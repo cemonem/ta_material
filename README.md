@@ -1,0 +1,1 @@
+A collection of assignments/examples i have prepared for METU Computer Engineering undergraduates since 2018. Key implementations of some of these assignments are omitted for longevity reasons, please contact me if you want to have a look.

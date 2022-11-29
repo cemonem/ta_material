@@ -1,0 +1,6 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find ceng460hw1)/urdf/turtlebot3_waffle_pi_barebones_riders.urdf.xacro" />
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model robot -param robot_description" respawn="false" output="screen" />
+  <node name="robot" pkg="my_ceng460hw1" type="solution.py" output="screen" />
+  <node name="referee" pkg="ceng460hw1" type="referee.py" args="$(find ceng460hw1)/data/clues.npy $(find ceng460hw1)/urdf/arrow3.sdf easy_mode" output="screen" />
+</launch>

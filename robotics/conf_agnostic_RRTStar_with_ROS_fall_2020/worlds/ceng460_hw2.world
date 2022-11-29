@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="hw2_object">
+      <pose>0 0 3 0 0 0</pose>
+      <link name="base_link">
+        <gravity>0</gravity>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>1.0</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz> 
+            <iyy>1.0</iyy>
+            <iyz>0.0</iyz>
+            <izz>1.0</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>.1 .1 .1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>.1 .1 .1</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <plugin name="ceng460_hw2_world_plugin" filename="libCeng460Hw2WorldPlugin.so" />
+
+  </world>
+</sdf>

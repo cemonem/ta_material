@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>my_ceng460hw1</name>
+  <version>0.0.0</version>
+  <description>The ceng460hw1 package</description>
+  <maintainer email="a.cemonem@gmail.com">Cem Onem</maintainer>
+  <license>MIT</license>
+
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_dev</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <depend>tf2_msgs</depend>
+  <depend>ceng460hw1</depend>
+  
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend> !-->
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+    <gazebo_ros                                                                 
+    plugin_path="${prefix}/../../lib"
+    gazebo_model_path="${prefix}/models:${prefix}/urdf"           
+    gazebo_resource_path="${prefix}"/>     
+  </export>
+</package>

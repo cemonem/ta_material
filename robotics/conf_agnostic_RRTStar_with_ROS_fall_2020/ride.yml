@@ -1,0 +1,12 @@
+requirements:
+  packages:
+    - 'https://github.com/ros-industrial/universal_robot'
+runtime:
+  launch:
+    args:
+      gazebo_gui: 'false'
+      paused: 'false'
+      spawn_obstacles: 'true'
+    on_reset: rosservice call /gazebo/reset_world
+    package: ceng460_hw2
+    path: ceng460_hw2.launch

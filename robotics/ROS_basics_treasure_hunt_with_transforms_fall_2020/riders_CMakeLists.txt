@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.0.2)
+project(my_ceng460hw1)
+
+add_compile_options(-std=c++11)
+
+
+find_package(catkin REQUIRED COMPONENTS roscpp gazebo_ros gazebo_dev gazebo_msgs tf2_msgs std_msgs rospy geometry_msgs urdf xacro message_generation ceng460hw1)
+
+catkin_package(
+   CATKIN_DEPENDS roscpp gazebo_ros gazebo_dev gazebo_msgs std_msgs rospy geometry_msgs message_runtime tf2_msgs ceng460hw1
+)
+
+include_directories(${catkin_INCLUDE_DIRS})

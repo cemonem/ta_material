@@ -1,0 +1,31 @@
+device PIC18F4620
+hwtool SIM
+set warningmessagebreakoptions.W0223_ADC_UNDERFLOW ignore
+set warningmessagebreakoptions.W0222_ADC_OVERFLOW ignore
+set oscillator.frequency 10
+set oscillator.frequencyunit Mega
+program "${cof_file_loc}"
+
+reset MCLR
+
+write pin RB0 high
+write pin RB1 high
+write pin RB2 high
+write pin RB3 high
+
+break *${sec_passed}
+run
+
+wait
+delete
+break *${rb2_released}
+stim rb2_bounce.scl
+continue
+
+wait
+continue
+
+# must not hit a breakpoint more than exactly once! this should timeout!
+wait 5000
+
+quit

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="gazebo_launch" default="true"/>
+  <arg name="paused" default="false" doc="Starts gazebo in paused mode" />
+  <arg name="gui" default="true" doc="Starts gazebo gui" />
+  <arg name="moveit_launch" default="true" />
+  <arg name="rviz_launch" default="false" />
+  <arg name="spawn_obstacles" default="true" />
+
+  <arg name="hw2_object_x" default="0.5"/>
+  <arg name="hw2_object_y" default="-0.3"/>
+  <arg name="hw2_object_z" default="0.0"/>
+
+  <arg name="hw2_object_final_x" default="-0.65"/>
+  <arg name="hw2_object_final_y" default="0.0"/>
+  <arg name="hw2_object_final_z" default="0.6"/>
+
+  <param name="hw2_object/init_pose/x" value="$(arg hw2_object_x)"/>
+  <param name="hw2_object/init_pose/y" value="$(arg hw2_object_y)"/>
+  <param name="hw2_object/init_pose/z" value="$(arg hw2_object_z)"/>
+
+  <param name="hw2_object/final_pose/x" value="$(arg hw2_object_final_x)"/>
+  <param name="hw2_object/final_pose/y" value="$(arg hw2_object_final_y)"/>
+  <param name="hw2_object/final_pose/z" value="$(arg hw2_object_final_z)"/>
+
+  <include if="$(arg gazebo_launch)" file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ceng460_hw2)/worlds/ceng460_hw2.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <node if="$(arg spawn_obstacles)" name="spawn_obstacles" pkg="ceng460_hw2" type="spawn_obstacles.py" args="-file $(find ceng460_hw2)/models/transparent_box.sdf" respawn="false" output="screen"/>
+
+  <include file="$(find ceng460_hw2)/launch/spawn_gazebo_ur5.launch">
+    <arg name="init_pose_x" value="0"/>
+    <arg name="init_pose_y" value="0"/>
+    <arg name="init_pose_z" value="0"/>
+    <arg name="robot_name" value="robot"/>
+  </include>
+
+  <group if="$(arg moveit_launch)">
+    <remap from="/follow_joint_trajectory" to="arm_controller/follow_joint_trajectory"/>
+    <include file="$(find ur5_moveit_config)/launch/move_group.launch">
+        <arg name="limited" value="true"/>
+        <arg name="debug" value="false" />
+    </include>
+  </group>
+
+  <include file="$(find ur5_moveit_config)/launch/moveit_rviz.launch" if="$(arg rviz_launch)">
+    <arg name="config" value="true"/>
+  </include>
+
+  <node if="$(arg moveit_launch)" name="ceng460_hw2_environment" pkg="ceng460_hw2" type="cube_placer.py" args="-obstacles $(arg spawn_obstacles)" respawn="false" output="screen" />
+    
+
+</launch>

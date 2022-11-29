@@ -1,0 +1,56 @@
+device PIC18F4620
+hwtool SIM
+set warningmessagebreakoptions.W0223_ADC_UNDERFLOW ignore
+set warningmessagebreakoptions.W0222_ADC_OVERFLOW ignore
+set oscillator.frequency 10
+set oscillator.frequencyunit Mega
+program "${cof_file_loc}"
+
+reset MCLR
+
+write pin RB0 high
+write pin RB1 high
+write pin RB2 high
+write pin RB4 high
+
+break *${init_complete}
+run
+
+wait
+delete
+break *${msec200_passed}
+# wait for some time and then push and not let go, if improperly programmed PIC would freeze
+write pin rb0 low
+continue
+
+wait
+continue
+
+
+wait
+echo msec_result_0: stopwatch should be 0.2±0.05 seconds
+stopwatch
+continue
+
+wait
+echo msec_result_1: stopwatch should be 0.2±0.05 seconds
+stopwatch
+continue
+
+wait
+echo msec_result_2: stopwatch should be 0.2±0.05 seconds
+stopwatch
+# let go, maybe it messes up after i lift my finger
+write pin rb0 high
+continue
+
+wait
+echo msec_result_3: stopwatch should be 0.2±0.05 seconds
+stopwatch
+continue
+
+wait
+echo msec_result_4: stopwatch should be 0.2±0.05 seconds
+stopwatch
+
+quit

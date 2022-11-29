@@ -1,0 +1,7 @@
+resources:
+  worlds:
+    cengbot_world:
+      package: ceng460hw1
+      world_file: worlds/cengbot.world
+runtime:
+  world: cengbot_world

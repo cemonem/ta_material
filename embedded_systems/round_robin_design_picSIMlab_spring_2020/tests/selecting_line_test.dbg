@@ -1,0 +1,407 @@
+device PIC18F4620
+hwtool SIM
+set warningmessagebreakoptions.W0223_ADC_UNDERFLOW ignore
+set warningmessagebreakoptions.W0222_ADC_OVERFLOW ignore
+set oscillator.frequency 10
+set oscillator.frequencyunit Mega
+program "${cof_file_loc}"
+
+reset MCLR
+
+write pin RB0 high
+write pin RB1 high
+write pin RB2 high
+write pin RB3 high
+
+break *${sec_passed}
+run
+
+wait
+delete
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_0: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_1: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_2: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb1_released}
+stim rb1_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_3: should be PORTA=0b00000000 PORTC=0b11111111 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_4: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_5: should be PORTA=0b00000000 PORTC=0b11111111 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb1_released}
+stim rb1_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_6: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b11111111
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_7: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_8: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b11111111
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb1_released}
+stim rb1_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_9: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b11111111
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_10: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_11: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b11111111
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb1_released}
+stim rb1_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_12: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b11111111
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_13: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_14: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b11111111
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb2_released}
+stim rb2_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_15: should be PORTA=0b00000000 PORTC=0b11111111 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_16: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_17: should be PORTA=0b00000000 PORTC=0b11111111 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb2_released}
+stim rb2_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_18: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_19: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_20: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb2_released}
+stim rb2_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_21: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_22: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_23: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${rb2_released}
+stim rb2_pulse.scl
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_24: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_25: should be PORTA=0b00000000 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+break *${msec200_passed}
+continue
+
+wait
+delete
+break *${main}
+continue
+
+wait
+delete
+echo check_port_label_26: should be PORTA=0b11111111 PORTC=0b00000000 PORTD=0b00000000
+print /d PORTA
+print /d PORTC
+print /d PORTD
+quit
